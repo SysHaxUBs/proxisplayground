@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Autosaving Text Box</title>
+  <style>
+    #textBox {
+      width: 400px;
+      height: 200px;
+      padding: 10px;
+      margin: 20px 0;
+      border: 2px solid gray;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Autosaving Text Box</h1>
+  <p>Type something in the text box below:</p>
+
+  <textarea id="textBox"></textarea>
+
+  <script>
+    const textBox = document.getElementById('textBox');
+
+    // Load the saved text on page load
+    window.addEventListener('load', () => {
+      const savedText = localStorage.getItem('textBoxData');
+      if (savedText) {
+        textBox.value = savedText;
+      }
+    });
+
+    // Autosave the text whenever a change is detected
+    textBox.addEventListener('input', () => {
+      localStorage.setItem('textBoxData', textBox.value);
+    });
+
+  </script>
+
+</body>
+
+</html>
