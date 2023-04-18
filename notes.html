@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="UTF-8">
-  <title>Autosaving Text Box</title>
-  <style>
-    #textBox {
-      width: 400px;
-      height: 200px;
-      padding: 10px;
-      margin: 20px 0;
-      border: 2px solid gray;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-  </style>
+	<title>Auto-Save Text Box</title>
+	<style>
+		textarea {
+			width: 100%;
+			height: 200px;
+			padding: 10px;
+			font-size: 16px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			resize: none;
+      font-family: monospace;
+		}
+	</style>
 </head>
-
 <body>
+>
+	<textarea id="textarea"></textarea>
+	<p>Data auto-saves every 10 seconds</p>
+	<script>
+		const textarea = document.getElementById('textarea');
 
-  <h1>Autosaving Text Box</h1>
-  <p>Type something in the text box below:</p>
+		// Load saved data from local storage
+		if (localStorage.getItem('data')) {
+			textarea.value = localStorage.getItem('data');
+		}
 
-  <textarea id="textBox"></textarea>
-
-  <script>
-    const textBox = document.getElementById('textBox');
-
-    // Load the saved text on page load
-    window.addEventListener('load', () => {
-      const savedText = localStorage.getItem('textBoxData');
-      if (savedText) {
-        textBox.value = savedText;
-      }
-    });
-
-    // Autosave the text whenever a change is detected
-    textBox.addEventListener('input', () => {
-      localStorage.setItem('textBoxData', textBox.value);
-    });
-
-  </script>
-
+		// Auto-save data to local storage every 5 seconds
+		setInterval(() => {
+			localStorage.setItem('data', textarea.value);
+		}, 5000);
+	</script>
 </body>
-
 </html>
