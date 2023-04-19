@@ -19,7 +19,7 @@
 <body>
 >
 	<textarea id="textarea"></textarea>
-	<p>Data auto-saves every 10 seconds</p>
+	<p>Data auto-saves every second</p>
 	<script>
 		const textarea = document.getElementById('textarea');
 
@@ -31,7 +31,7 @@
 		// Auto-save data to local storage every 5 seconds
 		setInterval(() => {
 			localStorage.setItem('data', textarea.value);
-		}, 5000);
+		}, 000);
 	</script>
 </body>
 </html>
